@@ -1,0 +1,120 @@
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #343a40;
+    color: #ecf0f1;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    font-family: serif;
+  }
+  
+  .sidebar-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .sidebar-header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 600;
+  }
+  
+  .sidebar-menu {
+    padding: 20px 0;
+    flex: 1;
+    overflow-y: auto;
+  }
+  
+  .menu-section {
+    margin-bottom: 15px;
+  }
+  
+  .section-title {
+    padding: 10px 20px;
+    color: #95a5a6;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+  
+  .menu-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: #ecf0f1;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  .menu-item.active {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .icon {
+    margin-right: 15px;
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+  }
+  
+  .arrow {
+    margin-left: auto;
+    font-size: 0.9rem;
+    transition: transform 0.2s ease;
+  }
+  
+  .submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .submenu.open {
+    max-height: 500px;
+  }
+  
+  .submenu-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px 10px 50px;
+    color: #bdc3c7;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+  }
+  
+  .submenu-item:hover {
+    color: #ecf0f1;
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+  
+  .submenu-icon {
+    margin-right: 10px;
+    font-size: 0.8rem;
+    width: 15px;
+    text-align: center;
+  }
+  
+  /* Scrollbar styling */
+  .sidebar-menu::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  .sidebar-menu::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+  }
+  
+  .sidebar-menu::-webkit-scrollbar-track {
+    background: transparent;
+  }
