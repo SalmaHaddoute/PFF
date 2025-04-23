@@ -35,7 +35,7 @@ function App() {
           <div className="page-content">
             <Routes>
               {/* Your routes remain the same */}
-              <Route path="/dashboard" element={
+              <Route path="/admin/dashboard" element={
                 <DashboardAd 
                   total_posts={10} 
                   accepted_posts={7} 

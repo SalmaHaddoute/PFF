@@ -29,8 +29,8 @@ function App2() {
 
   return (
     // Removed the <Router> wrapper
-    <div className="app-container">
-      <NavbarAd toggleSidebar={toggleSidebar} />
+    <div className="app-container" >
+      <NavbarAd toggleSidebar={toggleSidebar}  />
       
       <div className="main-content">
         {!sidebarCollapsed && <SiidBarEn />}
@@ -39,7 +39,7 @@ function App2() {
           <div className="page-content">
             <Routes>
               {/* Your routes remain the same */}
-              <Route path="/" element={
+              <Route path="/entreprise/dashboard" element={
                 <DashboardEn
                   total_posts={10} 
                   accepted_posts={7} 

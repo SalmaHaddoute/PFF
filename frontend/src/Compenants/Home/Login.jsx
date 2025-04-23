@@ -1,6 +1,7 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import api from '../../api/axios';
+import api from '../../api/api';
 import './Login.css';
 
 const Login = () => {
@@ -10,43 +11,65 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const location = useLocation();
 
-
   useEffect(() => {
     if (location.search.includes('expired=true')) {
       setErrorMessage('Votre session a expiré. Veuillez vous reconnecter.');
     }
   }, [location]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    
+    setErrorMessage('');
+  
     try {
-        // 1. Get CSRF cookie first
-        await api.get('/sanctum/csrf-cookie');
-        
-        // 2. Then make login request
-        const response = await api.post('/login', {
-            email,
-            password
-        }, {
-            headers: {
-                'X-CSRF-TOKEN': document.cookie
-                    .split('; ')
-                    .find(row => row.startsWith('XSRF-TOKEN='))
-                    ?.split('=')[1]
-            }
-        });
-    
-        // 3. Handle successful login
-        if (response.data?.redirect) {
-            window.location.href = response.data.redirect;
+      // 1. Get CSRF cookie first
+      await api.get('/sanctum/csrf-cookie');
+  
+      // 2. Extract CSRF token manually (fallback)
+      const getCsrfToken = () => {
+        return document.cookie
+          .split('; ')
+          .find(row => row.startsWith('XSRF-TOKEN='))
+          ?.split('=')[1];
+      };
+  
+      // 3. Make login request with token
+      const response = await api.post('/login', {
+        email,
+        password
+      }, {
+        headers: {
+          'X-XSRF-TOKEN': decodeURIComponent(getCsrfToken() || '')
         }
+      });
+  
+      // 4. Handle successful login
+      if (response.data?.redirect) {
+        window.location.href = response.data.redirect;
+      } else {
+        // Default redirect if none provided
+        window.location.href = '/admin/dashboard';
+      }
+  
     } catch (error) {
-        setErrorMessage(error.response?.data?.message || 'Erreur de connexion');
+      // Improved error handling
+      if (error.response) {
+        if (error.response.status === 422) {
+          setErrorMessage('Validation error: Please check your inputs');
+        } else if (error.response.status === 419) {
+          setErrorMessage('Session expired. Please refresh and try again.');
+        } else {
+          setErrorMessage(error.response.data.message || 'Login failed');
+        }
+      } else {
+        setErrorMessage('Network error. Please check your connection.');
+      }
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
-};
+  };
+
   return (
     <section className="login-section py-3 py-md-5 py-xl-8">
       <div className="container">
@@ -55,7 +78,7 @@ const Login = () => {
             <div className="mb-5">
               <h2 className="display-5 fw-bold text-center">Se connecter</h2>
               <p className="text-center m-0">
-                Vous n'avez pas de compte ? <Link to="/signup" className="link-warning text-decoration-none">S'inscrire</Link>
+                Vous n'avez pas de compte ? <Link to="/register" className="link-warning text-decoration-none">S'inscrire</Link>
               </p>
             </div>
           </div>
@@ -67,7 +90,7 @@ const Login = () => {
               <div className="col-12 col-lg-5">
                 <form onSubmit={handleSubmit}>
                   <div className="row gy-3 overflow-hidden">
-                    {errorMessage && (
+                  {errorMessage && (
                       <div className="col-12">
                         <div className="alert alert-danger">{errorMessage}</div>
                       </div>

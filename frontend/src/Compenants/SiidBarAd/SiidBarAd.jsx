@@ -23,7 +23,7 @@ const SiidBarAd = () => {
         {/* Section CORE */}
         <div className="menu-section">
           <h2 className="section-title">CORE</h2>
-          <Link to="/dashboard" className="menu-item">
+          <Link to="/admin/dashboard" className="menu-item">
             <i className="icon fas fa-tachometer-alt"></i>
             <span>Dashboard</span>
           </Link>
@@ -57,29 +57,7 @@ const SiidBarAd = () => {
           </div>
         </div>
 
-        {/* Section PRODUIT */}
-        <div className="menu-section">
-          <h2 className="section-title">PRODUIT</h2>
-          <div 
-            className={`menu-item ${openSections.produits ? 'active' : ''}`}
-            onClick={() => toggleSection('produits')}
-          >
-            <i className="icon fas fa-box-open"></i>
-            <span>Gestion des produits</span>
-            <i className={`arrow fas fa-angle-${openSections.produits ? 'down' : 'right'}`}></i>
-          </div>
-          
-          <div className={`submenu ${openSections.produits ? 'open' : ''}`}>
-            <Link to="/produits/liste" className="submenu-item">
-              <i className="submenu-icon fas fa-list"></i>
-              Liste des Produits
-            </Link>
-            <Link to="/produits/types" className="submenu-item">
-              <i className="submenu-icon fas fa-tags"></i>
-              Ajouter Type
-            </Link>
-          </div>
-        </div>
+        
 
         {/* Section RÉCLAMATIONS */}
         <div className="menu-section">

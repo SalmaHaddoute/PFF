@@ -1,7 +1,12 @@
-import React from 'react';
+
 import './DashboardAd.css';
 import { IonIcon } from '@ionic/react';
 import Charts from '../ChartsAd/Charts.jsx';
+import React from 'react';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import api from '../../api/api.js';
+
 import { 
     documentTextOutline,
     checkmarkCircleOutline,
@@ -16,6 +21,20 @@ import {
     total_products,
     blacklist 
     }) => {
+        const navigate = useNavigate();
+
+  useEffect(() => {
+    // Verify authentication on component mount
+    const verifyAuth = async () => {
+      try {
+        await api.get('/api/user'); // Your auth verification endpoint
+      // eslint-disable-next-line no-unused-vars
+      } catch (error) {
+        navigate('/login?expired=true');
+      }
+    };
+    verifyAuth();
+  }, [navigate]);
     return (
         <div className="row">
         {/* Card Box */}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import './Signup.css';
-import axios from '../../api/axios'; // Supprimez l'import axios en double
+import axios from '../../api/api'; // Supprimez l'import axios en double
 
 // Validation schema
 const schema = yup.object().shape({
@@ -129,8 +129,8 @@ const Register = () => {
     <section className="py-3 py-md-5 py-xl-8 bg-white">
       <div className="container">
         <div className="row">
-          <div className="col-12 text-center">
-            <h2 className="display-5 fw-bold">S'inscrire</h2>
+          <div className="col-12 text-center mb-3">
+            <h2 className="display-5  fw-bold">S'inscrire</h2>
             <p>
               Vous avez déjà un compte ?{' '}
               <Link to="/login" className="link-warning text-decoration-none">
