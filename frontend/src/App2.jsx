@@ -1,11 +1,7 @@
 import { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import NavbarAd from './Compenants/NavbarAd/NavbarAd';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
 import Footer from './Compenants/Footer/Footer';
 import AjouterReclamation from './Compenants/Reclamation/AjouterReclamation/AjouterReclamation';
 import ListReclamation from './Compenants/Reclamation/ListReclamation/ListReclamation';
@@ -28,7 +24,6 @@ function App2() {
   };
 
   return (
-    // Removed the <Router> wrapper
     <div className="app-container">
       <NavbarAd toggleSidebar={toggleSidebar} />
       
@@ -38,8 +33,7 @@ function App2() {
         <div className="content-area" style={{ marginLeft: sidebarCollapsed ? '0' : '250px' }}>
           <div className="page-content">
             <Routes>
-              {/* Your routes remain the same */}
-              <Route path="/entreprise/dashboardEn" element={
+              <Route path="dashboard" element={
                 <DashboardEn
                   total_posts={10} 
                   accepted_posts={7} 
@@ -48,23 +42,18 @@ function App2() {
                   blacklist={[]} 
                 />
               } />
-              <Route path="/reclamations/ajouter" element={<AjouterReclamation />} />
-              <Route path="/reclamations/listsreclamation" element={<ListReclamation/>} />
-              <Route path="/reclamations/listsrefuser" element={<ReclamationRefuser />} />
-              <Route path="/techniciens/ajouter" element={ <AjouterTechnicien/>} />
-              <Route path="/techniciens/liststechnicien" element={<ListTechnicien/>} />
-              <Route path="/techniciens/cherchertechnicien" element={<ChercherTechnicien/>} />
-              <Route path="/entreprise/chercherentreprise" element={ <ChercherEn/>} />
-              <Route path="/entreprise/myblacklist" element={<MyBlacklist />} />
-              <Route path="/blacklist" element={<BlacklistDirectory />} />
-              <Route path="/entreprise/statistiques" element={<Charts />} />
-              
-              
-
-              {/* ... other routes */}
+              <Route path="reclamations/ajouter" element={<AjouterReclamation />} />
+              <Route path="reclamations/liste" element={<ListReclamation />} />
+              <Route path="reclamations/refusees" element={<ReclamationRefuser />} />
+              <Route path="techniciens/ajouter" element={<AjouterTechnicien />} />
+              <Route path="techniciens/liste" element={<ListTechnicien />} />
+              <Route path="techniciens/chercher" element={<ChercherTechnicien />} />
+              <Route path="entreprises/chercher" element={<ChercherEn />} />
+              <Route path="blacklist/mon-liste" element={<MyBlacklist />} />
+              <Route path="blacklist/directory" element={<BlacklistDirectory />} />
+              <Route path="statistiques" element={<Charts />} />
             </Routes>
           </div>
-          
           <Footer />
         </div>
       </div>

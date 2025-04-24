@@ -18,12 +18,11 @@ const SiidBarAd = () => {
 
   return (
     <div className="sidebar">
-
       <div className="sidebar-menu">
         {/* Section CORE */}
         <div className="menu-section">
           <h2 className="section-title">CORE</h2>
-          <Link to="/dashboard" className="menu-item">
+          <Link to="/admin/dashboard" className="menu-item">
             <i className="icon fas fa-tachometer-alt"></i>
             <span>Dashboard</span>
           </Link>
@@ -42,15 +41,15 @@ const SiidBarAd = () => {
           </div>
           
           <div className={`submenu ${openSections.entreprises ? 'open' : ''}`}>
-            <Link to="/entreprises/verifier" className="submenu-item">
+            <Link to="/admin/entreprises/verifier" className="submenu-item">
               <i className="submenu-icon fas fa-check-circle"></i>
               Vérifier Entreprise
             </Link>
-            <Link to="/entreprises/chercher" className="submenu-item">
+            <Link to="/admin/entreprises/chercher" className="submenu-item">
               <i className="submenu-icon fas fa-search"></i>
               Chercher Entreprise
             </Link>
-            <Link to="/entreprises/secteurs" className="submenu-item">
+            <Link to="/admin/entreprises/secteurs" className="submenu-item">
               <i className="submenu-icon fas fa-plus-circle"></i>
               Ajouter Secteur
             </Link>
@@ -70,11 +69,11 @@ const SiidBarAd = () => {
           </div>
           
           <div className={`submenu ${openSections.produits ? 'open' : ''}`}>
-            <Link to="/produits/liste" className="submenu-item">
+            <Link to="/admin/produits/liste" className="submenu-item">
               <i className="submenu-icon fas fa-list"></i>
               Liste des Produits
             </Link>
-            <Link to="/produits/types" className="submenu-item">
+            <Link to="/admin/produits/types" className="submenu-item">
               <i className="submenu-icon fas fa-tags"></i>
               Ajouter Type
             </Link>
@@ -94,11 +93,11 @@ const SiidBarAd = () => {
           </div>
           
           <div className={`submenu ${openSections.reclamations ? 'open' : ''}`}>
-            <Link to="/reclamations/en-cours" className="submenu-item">
+            <Link to="/admin/reclamations/en-cours" className="submenu-item">
               <i className="submenu-icon fas fa-hourglass-half"></i>
               Réclamations en cours
             </Link>
-            <Link to="/reclamations/historique" className="submenu-item">
+            <Link to="/admin/reclamations/historique" className="submenu-item">
               <i className="submenu-icon fas fa-history"></i>
               Historique
             </Link>
@@ -108,7 +107,7 @@ const SiidBarAd = () => {
         {/* Section STATISTIQUES */}
         <div className="menu-section">
           <h2 className="section-title">STATISTIQUES</h2>
-          <Link to="/statistiques" className="menu-item">
+          <Link to="/admin/statistiques" className="menu-item">
             <i className="icon fas fa-chart-bar"></i>
             <span>Statistiques</span>
           </Link>
@@ -117,7 +116,7 @@ const SiidBarAd = () => {
         {/* Section BLACKLIST */}
         <div className="menu-section">
           <h2 className="section-title">BLACKLIST</h2>
-          <Link to="/blacklist" className="menu-item">
+          <Link to="/admin/blacklist" className="menu-item">
             <i className="icon fas fa-ban"></i>
             <span>Blacklist Directory</span>
           </Link>
