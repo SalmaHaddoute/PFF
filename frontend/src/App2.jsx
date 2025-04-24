@@ -39,7 +39,7 @@ function App2() {
           <div className="page-content">
             <Routes>
               {/* Your routes remain the same */}
-              <Route path="/" element={
+              <Route path="/entreprise/dashboardEn" element={
                 <DashboardEn
                   total_posts={10} 
                   accepted_posts={7} 

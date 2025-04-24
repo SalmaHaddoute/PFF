@@ -17,6 +17,14 @@ class Entreprise extends Authenticatable // Héritage de Authenticatable
     const STATUS_PENDING = 'en attente';
     const STATUS_REJECTED = 'refusé';
 
+    protected $table = 'entreprises'; // Nom de la table
+
+    
+    // Spécifiez que 'motdepasse' est la colonne password
+    public function getAuthPassword()
+{
+    return $this->motdepasse; // Crucial
+}
     protected $guard = 'entreprise';
 
     protected $casts = [
@@ -32,29 +40,29 @@ class Entreprise extends Authenticatable // Héritage de Authenticatable
         ]);
     }
     // Dans app/Models/Entreprise.php
-protected $fillable = [
-    'username',
-    'email',
-    'motdepasse',
-    'rc',
-    'ice',
-    'id_secteur',
-    'address',
-    'status',
-    'date_creation' // Ajoutez ce champ
-];
+    protected $fillable = [
+        'username',
+        'email',
+        'motdepasse',
+        'rc',
+        'ice',
+        'id_secteur',
+        'address',
+        'status',
+        'date_creation' // Ajoutez ce champ
+    ];
 
 protected $dates = [
     'date_creation'
 ];
-    public function setMotdepasseAttribute($value)
+public function setMotdepasseAttribute($value)
 {
-    $this->attributes['motdepasse'] = Hash::make($value);
-}
-    public function getAuthPassword()
-    {
-        return $this->motdepasse; // Indique à Laravel où trouver le mot de passe
+    if (!empty($value)) {
+        $this->attributes['motdepasse'] = Hash::make($value);
+    } else {
+        $this->attributes['motdepasse'] = null;
     }
+}
 
 
     protected $hidden = [

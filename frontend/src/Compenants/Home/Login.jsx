@@ -16,37 +16,29 @@ const Login = () => {
       setErrorMessage('Votre session a expiré. Veuillez vous reconnecter.');
     }
   }, [location]);
+
+
+  // Login.jsx - handleSubmit modifié
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     
     try {
-        // 1. Get CSRF cookie first
-        await api.get('/sanctum/csrf-cookie');
-        
-        // 2. Then make login request
-        const response = await api.post('/login', {
-            email,
-            password
-        }, {
-            headers: {
-                'X-CSRF-TOKEN': document.cookie
-                    .split('; ')
-                    .find(row => row.startsWith('XSRF-TOKEN='))
-                    ?.split('=')[1]
-            }
-        });
-    
-        // 3. Handle successful login
-        if (response.data?.redirect) {
-            window.location.href = response.data.redirect;
-        }
-    } catch (error) {
-        setErrorMessage(error.response?.data?.message || 'Erreur de connexion');
+      await api.get('/sanctum/csrf-cookie');
+      const { data } = await api.post('/login', { email, password });
+  
+      if (data.success) {
+        // Force un rechargement complet pour initialiser la session
+        window.location.href = data.redirect;
+      }
+    } catch (errorMessage) {
+      // Gestion des erreurs
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
-};
+  };
+
+
   return (
     <section className="login-section py-3 py-md-5 py-xl-8">
       <div className="container">
@@ -66,6 +58,7 @@ const Login = () => {
             <div className="row gy-5 justify-content-center">
               <div className="col-12 col-lg-5">
                 <form onSubmit={handleSubmit}>
+                
                   <div className="row gy-3 overflow-hidden">
                     {errorMessage && (
                       <div className="col-12">

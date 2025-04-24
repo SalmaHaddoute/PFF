@@ -1,22 +1,25 @@
+// api/axios.js
 import axios from 'axios';
 
 const api = axios.create({
     baseURL: 'http://localhost:8000',
+    withCredentials: true,
     headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-    },
-    // Retirez withCredentials si vous ne l'utilisez pas
-});
-
-// Simplifiez l'intercepteur
-api.interceptors.request.use(config => {
-    const token = localStorage.getItem('token');
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest'
     }
-    return config;
-});
+  });
 
+// Intercepteur pour les erreurs
+api.interceptors.response.use(
+  response => response,
+  error => {
+    if (error.response?.status === 419) {
+      window.location.reload(); // Régénère le CSRF token si expiré
+    }
+    return Promise.reject(error);
+  }
+);
 
 export default api;
