@@ -1,0 +1,60 @@
+    /* Style général de la page */
+    .form-container {
+        background: transparent;
+    }
+    
+    /* Style des boutons */
+    .btn-warning {
+        background-color: #f1c40f;
+        border-color: #f1c40f;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-warning:hover {
+        background-color: #f39c12;
+        border-color: #f39c12;
+        transform: translateY(-2px);
+    }
+    
+    /* Bordures */
+    .border-light {
+        border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+    
+    /* Couleurs de texte */
+    .text-light-dark {
+        color: rgb(160, 162, 163);
+    }
+    
+    /* Style des inputs */
+    .form-control {
+        color: white;
+    }
+    
+    .form-control:focus {
+        background-color: transparent;
+        color: white;
+        box-shadow: none;
+        border-color: #f1c40f;
+    }
+    
+    /* Style du breadcrumb */
+    .breadcrumb {
+        background-color: #343a40;
+    }
+    
+    /* Style des alertes */
+    .alert {
+        border-radius: 0.5rem;
+    }
+    
+    /* Style responsive */
+    @media (max-width: 768px) {
+        .card-body {
+        padding: 1.5rem !important;
+        }
+        
+        .form-container {
+        padding: 1.5rem !important;
+        }
+    }
