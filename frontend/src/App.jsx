@@ -15,13 +15,13 @@ import BlacklistDirectory from './Compenants/BlacklistDirectory/BlacklistDirecto
 function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
-  const toggleSidebar = () => {
-    setSidebarCollapsed(!sidebarCollapsed);
-  };
+    const toggleSidebar = () => {
+        setSidebarCollapsed(!sidebarCollapsed);
+    };
 
-  return (
-    <div className="app-container">
-      <NavbarAd toggleSidebar={toggleSidebar} />
+    return (
+        <div className="app-container">
+            <NavbarAd toggleSidebar={toggleSidebar} />
       
       <div className="main-content">
         {!sidebarCollapsed && <Sidebar />}

@@ -69,6 +69,19 @@ class EntrepriseController extends Controller
             ]
         ]);
     }
+    public function getProfile(Request $request)
+{
+    $entreprise = $request->user(); // Récupère l'entreprise connectée
+    
+    return response()->json([
+        'id' => $entreprise->id,
+        'nom_entreprise' => $entreprise->username,
+        'rc' => $entreprise->rc,
+        'ice' => $entreprise->ice,
+        'email' => $entreprise->email,
+        // Ajoutez d'autres champs si nécessaire
+    ]);
+}
 
     // GET /api/admin/entreprises/{id}
     public function show(Entreprise $entreprise)

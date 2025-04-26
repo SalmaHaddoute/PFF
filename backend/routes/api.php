@@ -9,14 +9,15 @@ use App\Http\Controllers\BlacklistController;
 use App\Http\Controllers\EntrepriseController;
 use App\Http\Controllers\EntrepriseDashboardController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReclamationController;
 use App\Http\Controllers\SecteurController;
 use App\Http\Controllers\TechnicienController;
 use App\Http\Controllers\TypeProductController;
 
-
 Route::middleware(['auth:sanctum', 'has.entreprise'])->group(function() {
     Route::post('/techniciens/ajouter', [TechnicienController::class, 'store']);
 });
+
 Route::middleware('api')->group(function () {
     // Public routes (no auth)
     Route::options('/register', [RegisterController::class, 'handleOptionsRequest']);
@@ -47,19 +48,27 @@ Route::middleware('api')->group(function () {
         });
 
         // Entreprise-only routes
-        Route::middleware(['check.user.type:entreprise'])->prefix('entreprise')->group(function () {
+        Route::prefix('entreprise')->group(function () {
+            Route::middleware(['auth:sanctum', 'entreprise'])->group(function () {
+                Route::post('/reclamations/ajouter', [ReclamationController::class, 'store']);
+                Route::get('/profile', [EntrepriseController::class, 'getProfile']);
+
             Route::get('/dashboard', [EntrepriseDashboardController::class, 'index']);
             Route::get('/statistique', [EntrepriseDashboardController::class, 'index']);
             Route::get('/blacklist', [BlacklistController::class, 'index']);
+            
+            // Route réclamation avec OPTIONS pour CORS
+            
+            
+            // Routes techniciens
             Route::prefix('techniciens')->group(function () {
                 Route::post('/ajouter', [TechnicienController::class, 'store']);
                 Route::get('/liste', [TechnicienController::class, 'index']);
                 Route::get('/chercher', [TechnicienController::class, 'search']);
             });
         });
-
-
     });
+});
 
     // Public file access (if needed)
     Route::get('/files/{file}', function ($file) {

@@ -23,21 +23,24 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setErrorMessage('');
     
     try {
-      await api.get('/sanctum/csrf-cookie');
-      const { data } = await api.post('/login', { email, password });
-  
-      if (data.success) {
-        // Force un rechargement complet pour initialiser la session
-        window.location.href = data.redirect;
-      }
-    } catch (errorMessage) {
-      // Gestion des erreurs
+        await api.get('/sanctum/csrf-cookie');
+        const response = await api.post('/login', { email, password });
+        
+        if (response.data.success) {
+            // Stocker les données utilisateur
+            localStorage.setItem('user_data', JSON.stringify(response.data.user));
+            // Redirection
+            window.location.href = response.data.redirect;
+        }
+    } catch (error) {
+        setErrorMessage(error.response?.data?.message || 'Une erreur est survenue lors de la connexion');
     } finally {
-      setLoading(false);
+        setLoading(false);
     }
-  };
+};
 
 
   return (

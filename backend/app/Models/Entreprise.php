@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable; // On hérite de Authenticatable
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
+
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Str;
 
 class Entreprise extends Authenticatable // Héritage de Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasApiTokens, Notifiable;
 
 
     const STATUS_ACCEPTED = 'accepté';
