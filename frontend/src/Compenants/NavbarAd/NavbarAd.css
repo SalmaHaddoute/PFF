@@ -1,0 +1,47 @@
+/* NavbarAd.css */
+
+.navbar-ad-container .navbar {
+    width: 100%;
+    height: 60px;
+    background-color: #343a40;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: serif;
+}
+
+.navbar-ad-container .navbar-brand {
+    color: #ffc107;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navbar-ad-container .navbar-brand:hover {
+    color: #fff;
+}
+
+.navbar-ad-container #sidebarToggle {
+    color: #fff;
+    margin-left: 1rem;
+}
+
+.navbar-ad-container .input-group input {
+    border: none;
+    border-radius: 20px 0 0 20px;
+}
+
+.navbar-ad-container .input-group button {
+    border: none;
+    border-radius: 0 20px 20px 0;
+}
+
+.navbar-ad-container .dropdown-menu {
+    font-size: 0.9rem;
+}
+
+.navbar-ad-container .dropdown-item i {
+    margin-right: 8px;
+}

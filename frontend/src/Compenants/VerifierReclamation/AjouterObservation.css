@@ -1,0 +1,110 @@
+/* Form and Card Body */
+.card-body {
+    padding: 30px;
+}
+
+.p-4.rounded.shadow.border.border-light {
+    background: transparent;
+    border: 1px solid #dee2e6 !important;
+}
+
+.form-label.text-light-dark.fw-lighter {
+    color: #212529;
+    font-weight: 300;
+}
+
+.form-control.border-0.border-bottom.shadow-none.bg-transparent {
+    border: none;
+    border-bottom: 1px solid #ced4da;
+    box-shadow: none;
+    background: transparent;
+    color: #212529;
+}
+
+.form-control.border-0.border-bottom.shadow-none.bg-transparent.is-invalid {
+    border-bottom: 2px solid #dc3545;
+}
+
+textarea.form-control {
+    height: 120px;
+    resize: none;
+}
+
+.btn.btn-warning.fw-lighter.shadow-lg.px-5.py-2 {
+    background-color: #f1c40f;
+    border-color: #f1c40f;
+    color: #212529;
+    font-weight: 300;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 0.5rem 2rem;
+}
+
+.btn.btn-warning.fw-lighter.shadow-lg.px-5.py-2:hover {
+    background-color: #d4ac0d;
+    border-color: #d4ac0d;
+}
+
+.btn.btn-secondary.fw-lighter.shadow-lg.px-5.py-2 {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: #fff;
+    font-weight: 300;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 0.5rem 2rem;
+}
+
+.btn.btn-secondary.fw-lighter.shadow-lg.px-5.py-2:hover {
+    background-color: #5a6268;
+    border-color: #5a6268;
+}
+
+/* Breadcrumb */
+.breadcrumb.mb-2.text-light.bg-light.p-3.rounded.shadow-sm {
+    background-color: #f8f9fa;
+    color: #212529;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.breadcrumb-item a.text-warning {
+    color: #f1c40f;
+}
+
+.breadcrumb-item a.text-warning:hover {
+    color: #d4ac0d;
+}
+
+.breadcrumb-item.active.text-dark {
+    color: #212529;
+}
+
+/* Alerts */
+.alert.alert-success.text-center {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+    text-align: center;
+}
+
+.alert.alert-danger.text-center {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+    text-align: center;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    .d-flex.justify-content-center {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn.btn-warning.fw-lighter.shadow-lg.px-5.py-2,
+    .btn.btn-secondary.fw-lighter.shadow-lg.px-5.py-2 {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+}
